@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Mario Allemann(FHNW University of Applied Sciences Northwestern Switzerland)
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="Payment" table="Payment" lazy="false">
+		<id name="transactionID" column="transactionID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="amount" column="amount" type="integer" not-null="true" lazy="false"/>
+		<property name="orderId" column="orderId" type="integer" not-null="true" lazy="false"/>
+		<property name="payDate" column="payDate" type="date" not-null="true" lazy="false"/>
+	</class>
+</hibernate-mapping>

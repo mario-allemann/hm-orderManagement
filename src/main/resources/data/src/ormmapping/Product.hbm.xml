@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Mario Allemann(FHNW University of Applied Sciences Northwestern Switzerland)
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="Product" table="Product" lazy="false">
+		<id name="prodId" column="prodId" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="price" column="price" type="integer" not-null="true" lazy="false"/>
+		<property name="productName" column="productName" type="string" length="255" not-null="true" lazy="false"/>
+		<property name="description" column="description" type="string" length="255" not-null="false" lazy="false"/>
+		<set name="ORM_OrderPositions" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="productId" not-null="true"/>
+			<one-to-many class="OrderPositions"/>
+		</set>
+	</class>
+</hibernate-mapping>
