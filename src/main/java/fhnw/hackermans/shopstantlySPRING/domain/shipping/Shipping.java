@@ -6,8 +6,7 @@ import java.util.List;
 import java.io.Serializable;
 import javax.persistence.*;
 @Entity
-@org.hibernate.annotations.Proxy(lazy=false)
-@Table(name="Shipping")
+@Table(name="shipping")
 public class Shipping implements Serializable {
 	public Shipping() {
 	}
