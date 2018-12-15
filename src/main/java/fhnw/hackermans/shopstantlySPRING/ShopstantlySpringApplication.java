@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.Product;
+import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.ProductRepo;
+
 @SpringBootApplication
 @Controller
 @EnableAutoConfiguration
 public class ShopstantlySpringApplication {
 	@Autowired 
-	private TestRepo testRepo;
+	private ProductRepo prodRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ShopstantlySpringApplication.class, args);
@@ -28,17 +31,19 @@ public class ShopstantlySpringApplication {
 	}
 
 	// Map test page
-	@RequestMapping("/test")
+	@RequestMapping("/product")
 	@ResponseBody
-	Iterable<TestTable> getAllTests() {
-		return testRepo.findAll();
+	Iterable<Product> getAllProducts() {
+		return prodRepo.findAll();
 	}
 
-	@RequestMapping("/add")
-	public @ResponseBody String addTest(@RequestParam String testAtt) {
-		TestTable t = new TestTable();
-		t.setTestAtt(testAtt);
-		testRepo.save(t);
+	@RequestMapping("/addProduct")
+	public @ResponseBody String addTest(@RequestParam String attr) {
+		Product p = new Product();
+		p.setProductName("Testproduct"+attr);
+		p.setDescription("Testdescription"+attr);
+		p.setPrice(Integer.parseInt(attr));
+		prodRepo.save(p);
 		return "Saved";
 	}
 }
