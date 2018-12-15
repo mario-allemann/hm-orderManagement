@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @EnableAutoConfiguration
 public class ShopstantlySpringApplication {
-	/*@Autowired 
-	private TestRepo testRepo;*/
+	@Autowired 
+	private TestRepo testRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ShopstantlySpringApplication.class, args);
@@ -28,7 +28,7 @@ public class ShopstantlySpringApplication {
 	}
 
 	// Map test page
-	/*@RequestMapping("/test")
+	@RequestMapping("/test")
 	@ResponseBody
 	Iterable<TestTable> getAllTests() {
 		return testRepo.findAll();
@@ -40,5 +40,5 @@ public class ShopstantlySpringApplication {
 		t.setTestAtt(testAtt);
 		testRepo.save(t);
 		return "Saved";
-	}*/
+	}
 }
