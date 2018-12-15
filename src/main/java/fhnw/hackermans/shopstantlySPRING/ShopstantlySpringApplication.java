@@ -38,7 +38,7 @@ public class ShopstantlySpringApplication {
 	}
 
 	@RequestMapping("/addProduct")
-	public @ResponseBody String addTest(@RequestParam String attr) {
+	public @ResponseBody String addProduct(@RequestParam String attr) {
 		Product p = new Product();
 		p.setProductName("Testproduct"+attr);
 		p.setDescription("Testdescription"+attr);
