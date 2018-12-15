@@ -36,14 +36,4 @@ public class ShopstantlySpringApplication {
 	Iterable<Product> getAllProducts() {
 		return prodRepo.findAll();
 	}
-
-	@RequestMapping("/addProduct")
-	public @ResponseBody String addProduct(@RequestParam String attr) {
-		Product p = new Product();
-		p.setProductName("Testproduct"+attr);
-		p.setDescription("Testdescription"+attr);
-		p.setPrice(Integer.parseInt(attr));
-		prodRepo.save(p);
-		return "Saved";
-	}
 }
