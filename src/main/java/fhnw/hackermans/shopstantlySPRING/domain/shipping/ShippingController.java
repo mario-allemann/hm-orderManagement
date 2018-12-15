@@ -7,11 +7,11 @@ import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@Configuration
+//@Controller
+//@Configuration
 public class ShippingController {
 
-	@Autowired 
+	/*@Autowired 
 	private ShippingRepo shippingRepo;
 	
 	// Map test page
@@ -29,5 +29,5 @@ public class ShippingController {
 		s.setOrderId(Integer.parseInt(orderId));
 		shippingRepo.save(s);
 		return "Saved";
-	}
+	}*/
 }

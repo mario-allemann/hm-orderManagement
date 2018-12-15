@@ -18,12 +18,12 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
-@EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "shippingEntityManager", transactionManagerRef = "shippingTransactionManager", basePackages = "fhnw.hackermans.shopstantlySPRING.domain.shipping")
+//@Configuration
+//@EnableTransactionManagement
+//@EnableJpaRepositories(entityManagerFactoryRef = "shippingEntityManager", transactionManagerRef = "shippingTransactionManager", basePackages = "fhnw.hackermans.shopstantlySPRING.domain.shipping")
 public class shippingDBconfig {
 
-	@Primary
+	/*@Primary
 	@Bean
 	public DataSource mysqlDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -53,6 +53,6 @@ public class shippingDBconfig {
 	public PlatformTransactionManager mysqlTransactionManager(
 			@Qualifier("shippingEntityManager") EntityManagerFactory entityManagerFactory) {
 		return new JpaTransactionManager(entityManagerFactory);
-	}
+	}*/
 
 }
