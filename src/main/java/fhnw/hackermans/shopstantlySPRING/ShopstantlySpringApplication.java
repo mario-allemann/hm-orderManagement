@@ -83,8 +83,8 @@ public class ShopstantlySpringApplication {
 	// Map order creation
 	@RequestMapping("/createOrder")
 	@ResponseBody
-	void createOrder(@RequestBody String jsonOrder) {
-		JsonParser jsonParser = new BasicJsonParser();
+	String createOrder(@RequestBody String jsonOrder) {
+		/*JsonParser jsonParser = new BasicJsonParser();
 		Map<String, Object> jsonMap = null;
 		try {
 			jsonMap = jsonParser.parseMap(jsonOrder);
@@ -100,10 +100,13 @@ public class ShopstantlySpringApplication {
 		} catch (Exception e) {
 			// do nothing
 		}
-		Map<String, String> parameters = (Map<String, String>) entryMap.get("parameters");
+		Map<String, String> parameters = (Map<String, String>) entryMap.get("parameters");*/
+		String subStr = jsonOrder.substring(jsonOrder.indexOf("\"qty\": "));
+		subStr = jsonOrder.substring(0, subStr.indexOf(","));
+		return subStr;
 
-		int qty = Integer.parseInt(parameters.get("qty"));
-		String product = parameters.get("product");
+		//int qty = Integer.parseInt(parameters.get("qty"));
+		//String product = parameters.get("product");
 
 		// create order and position
 		/*Order o = new Order();
