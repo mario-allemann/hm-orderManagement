@@ -7,6 +7,5 @@ import org.springframework.data.repository.query.Param;
 // CRUD refers Create, Read, Update, Delete
 
 public interface CustomerRepo extends CrudRepository<Customer, Integer> {
-	//@Query("SELECT * FROM Todo t where t.id = :id") 
 	Customer findByCustomerId(@Param("customerId") int customerId);
 }

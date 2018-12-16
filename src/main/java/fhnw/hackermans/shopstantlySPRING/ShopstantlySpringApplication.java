@@ -105,8 +105,7 @@ public class ShopstantlySpringApplication {
 		String product = parameters.get("product");
 
 		// create order and position
-		Customer c = custRepo.findByCustomerId(11);
-		/*Order o = new Order();
+		Order o = new Order();
 		Customer c = custRepo.findByCustomerId(11);
 		o.setCustomer(c);
 		o.setDate(new Date());
@@ -115,9 +114,9 @@ public class ShopstantlySpringApplication {
 		
 		OrderPositions op = new OrderPositions();
 		op.setOrder(o);
-		Product p = prodRepo.findByProductName(product);
+		Product p = prodRepo.findByProductName(product).get(0);
 		op.setProduct(p);
 		op.setQty(qty);
-		orderPosRepo.save(op);*/
+		orderPosRepo.save(op);
 	}
 }
