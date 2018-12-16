@@ -62,9 +62,10 @@ public class ShopstantlySpringApplication {
 		} catch (Exception e) {
 			// do nothing
 		}
+		Map<String, String> parameters = (Map<String, String>) entryMap.get("parameters");
 		String retString = "";
-		for (Map.Entry<String, Object> entry : entryMap.entrySet()) {
-			retString += "KEY: " + entry.getKey() + "-> VALUE: " + entry.getValue().toString() + "\r\n";
+		for (Map.Entry<String, String> entry : parameters.entrySet()) {
+			retString += "KEY: " + entry.getKey() + "-> VALUE: " + entry.getValue() + "\r\n";
 		}
 		return retString;
 	}
