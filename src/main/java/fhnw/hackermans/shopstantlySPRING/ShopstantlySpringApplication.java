@@ -124,9 +124,9 @@ public class ShopstantlySpringApplication {
 	    restTemplate.getForObject((uri+parms), String.class);
 	    
 	    // Call shipping micro service
-	    /*uri = "http://hm-shipping.herokuapp.com/shipOrder";
-	    parms = "?orderId="+ orderId;
+	    uri = "http://hm-shipping.herokuapp.com/shipOrder";
+	    parms = "?orderId="+ oCreated.getOrderId();
 	    restTemplate = new RestTemplate();
-	    restTemplate.getForObject((uri+parms), String.class);*/
+	    restTemplate.getForObject((uri+parms), String.class);
 	}
 }
