@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.Customer;
 import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.CustomerRepo;
@@ -118,5 +119,25 @@ public class ShopstantlySpringApplication {
 		op.setProduct(p);
 		op.setQty(qty);
 		orderPosRepo.save(op);
+		
+		// call payment micro service
+		int orderId = o.getOrderId();
+		String uri = "http://hm-payment.herokuapp.com/pay";
+	    String parms = "?orderId="+ orderId + "&amount=" + qty;
+	    RestTemplate restTemplate = new RestTemplate();
+	    restTemplate.getForObject((uri+parms), String.class);
+	    
+	    // Call inventory micro service
+		int prodId = p.getProdId();
+	    uri = "http://hm-inventory.herokuapp.com/getFromWarehouse";
+	    parms = "?prodId="+ prodId + "&amount=" + qty;
+	    restTemplate = new RestTemplate();
+	    restTemplate.getForObject((uri+parms), String.class);
+	    
+	    // Call shipping micro service
+	    /*uri = "http://hm-shipping.herokuapp.com/ship";
+	    parms = "?orderId="+ orderId;
+	    restTemplate = new RestTemplate();
+	    restTemplate.getForObject((uri+parms), String.class);*/
 	}
 }
