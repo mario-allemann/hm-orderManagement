@@ -83,33 +83,19 @@ public class ShopstantlySpringApplication {
 	// Map order creation
 	@RequestMapping("/createOrder")
 	@ResponseBody
-	String createOrder(@RequestBody String jsonOrder) {
-		/*JsonParser jsonParser = new BasicJsonParser();
-		Map<String, Object> jsonMap = null;
-		try {
-			jsonMap = jsonParser.parseMap(jsonOrder);
-		} catch (Exception e) {
-			// do nothing
-		}
-		Map<String, Object> queryResults = (Map<String, Object>) jsonMap.get("queryResult");
-		ArrayList<String> outputContexts = (ArrayList<String>) queryResults.get("outputContexts");
-		String entryJson = outputContexts.get(0);
-		Map<String, Object> entryMap = null;
-		try {
-			entryMap = jsonParser.parseMap(entryJson);
-		} catch (Exception e) {
-			// do nothing
-		}
-		Map<String, String> parameters = (Map<String, String>) entryMap.get("parameters");*/
+	void createOrder(@RequestBody String jsonOrder) {
 		String subStr = jsonOrder.substring(jsonOrder.indexOf("\"qty\": "));
-		subStr = jsonOrder.substring(0, subStr.indexOf(","));
-		return subStr;
+		subStr = subStr.substring(0, subStr.indexOf(","));
+		subStr = subStr.substring(8, subStr.length()-1);
+		int qty = Integer.parseInt(subStr);
 
-		//int qty = Integer.parseInt(parameters.get("qty"));
-		//String product = parameters.get("product");
+		subStr = jsonOrder.substring(jsonOrder.indexOf("\"product\": "));
+		subStr = subStr.substring(0, subStr.indexOf("}")).trim();
+		subStr = subStr.substring(12, subStr.length()-1);
+		String product = subStr;
 
 		// create order and position
-		/*Order o = new Order();
+		Order o = new Order();
 		Customer c = custRepo.findByCustomerId(11);
 		o.setCustomer(c);
 		o.setDate(new Date());
@@ -121,7 +107,7 @@ public class ShopstantlySpringApplication {
 		Product p = prodRepo.findByProductName(product).get(0);
 		op.setProduct(p);
 		op.setQty(qty);
-		orderPosRepo.save(op);*/
+		orderPosRepo.save(op);
 		
 		// call payment micro service
 		//System.out.println(oCreated.getOrderId());
