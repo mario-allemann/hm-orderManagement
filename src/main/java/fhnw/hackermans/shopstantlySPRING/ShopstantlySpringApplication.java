@@ -111,7 +111,7 @@ public class ShopstantlySpringApplication {
 		o.setCustomer(c);
 		o.setDate(new Date());
 		o.setState("open");
-		Order oCreated = orderRepo.save(o);
+		Order oCreated = orderRepo.saveAndFlush(o);
 		
 		OrderPositions op = new OrderPositions();
 		op.setOrder(oCreated);
