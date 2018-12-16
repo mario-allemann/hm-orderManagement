@@ -118,11 +118,11 @@ public class ShopstantlySpringApplication {
 		Product p = prodRepo.findByProductName(product).get(0);
 		op.setProduct(p);
 		op.setQty(qty);
-		OrderPositions opCreated = orderPosRepo.save(op);
+		orderPosRepo.save(op);
 		
 		// call payment micro service
 		String uri = "http://hm-payment.herokuapp.com/payOrder";
-	    String parms = "?orderId="+ opCreated.getOrder().getOrderId() + "&amount=" + (p.getPrice()*qty);
+	    String parms = "?orderId="+ oCreated.getOrderId() + "&amount=" + (p.getPrice()*qty);
 	    RestTemplate restTemplate = new RestTemplate();
 	    restTemplate.getForObject((uri+parms), String.class);
 	    

@@ -19,8 +19,7 @@ public class Order implements Serializable {
 	
 	@Column(name="orderId", nullable=false)	
 	@Id	
-	@GeneratedValue(generator="ORDER_ORDERID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="ORDER_ORDERID_GENERATOR", strategy="native")	
+	@GeneratedValue(strategy = GenerationType.AUTO)	
 	private int orderId;
 	
 	@Column(name="`date`", nullable=true)	
