@@ -50,6 +50,13 @@ public class ShopstantlySpringApplication {
 	String home() {
 		return "This is the homepage, faggots";
 	}
+	
+	// Map customer table
+	@RequestMapping("/customer")
+	@ResponseBody
+	Iterable<Customer> getAllCustomers() {
+		return custRepo.findAll();
+	}
 
 	// Map product table
 	@RequestMapping("/product")
@@ -98,7 +105,8 @@ public class ShopstantlySpringApplication {
 		String product = parameters.get("product");
 
 		// create order and position
-		Order o = new Order();
+		Customer c = custRepo.findByCustomerId(11);
+		/*Order o = new Order();
 		Customer c = custRepo.findByCustomerId(11);
 		o.setCustomer(c);
 		o.setDate(new Date());
@@ -110,6 +118,6 @@ public class ShopstantlySpringApplication {
 		Product p = prodRepo.findByProductName(product);
 		op.setProduct(p);
 		op.setQty(qty);
-		orderPosRepo.save(op);
+		orderPosRepo.save(op);*/
 	}
 }
