@@ -111,7 +111,8 @@ public class ShopstantlySpringApplication {
 		o.setCustomer(c);
 		o.setDate(new Date());
 		o.setState("open");
-		Order oCreated = orderRepo.saveAndFlush(o);
+		Order oCreated = orderRepo.save(o);
+		orderRepo.flush();
 		
 		OrderPositions op = new OrderPositions();
 		op.setOrder(oCreated);
@@ -121,7 +122,7 @@ public class ShopstantlySpringApplication {
 		orderPosRepo.save(op);
 		
 		// call payment micro service
-		System.out.println(oCreated.getOrderId());
+		//System.out.println(oCreated.getOrderId());
 		/*String uri = "http://hm-payment.herokuapp.com/payOrder";
 	    String parms = "?orderId="+ oCreated.getOrderId() + "&amount=" + (p.getPrice()*qty);
 	    RestTemplate restTemplate = new RestTemplate();
