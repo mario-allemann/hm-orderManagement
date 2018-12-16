@@ -1,10 +1,12 @@
 package fhnw.hackermans.shopstantlySPRING;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,5 +37,17 @@ public class ShopstantlySpringApplication {
 	@ResponseBody
 	Iterable<Product> getAllProducts() {
 		return prodRepo.findAll();
+	}
+	
+	// Map test page
+	@RequestMapping("/createOrder")
+	@ResponseBody
+	String createOrder(@RequestBody String jsonOrder) {
+		return jsonOrder;
+		/*try {
+			JSONObject obj = new JSONObject(jsonOrder);
+		} catch (Exception e) {
+			System.out.println(e);
+		}*/
 	}
 }
