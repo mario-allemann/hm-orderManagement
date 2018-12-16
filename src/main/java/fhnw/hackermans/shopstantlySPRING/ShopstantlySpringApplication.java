@@ -100,7 +100,7 @@ public class ShopstantlySpringApplication {
 		o.setCustomer(c);
 		o.setDate(new Date());
 		o.setState("open");
-		orderRepo.save(o);
+		Order oCreated = orderRepo.saveAndFlush(o);
 		
 		OrderPositions op = new OrderPositions();
 		op.setOrder(o);
@@ -111,17 +111,17 @@ public class ShopstantlySpringApplication {
 		
 		// call payment micro service
 		//System.out.println(oCreated.getOrderId());
-		/*String uri = "http://hm-payment.herokuapp.com/payOrder";
+		String uri = "http://hm-payment.herokuapp.com/payOrder";
 	    String parms = "?orderId="+ oCreated.getOrderId() + "&amount=" + (p.getPrice()*qty);
 	    RestTemplate restTemplate = new RestTemplate();
-	    restTemplate.getForObject((uri+parms), String.class);*/
+	    restTemplate.getForObject((uri+parms), String.class);
 	    
 	    // Call inventory micro service
-		/*int prodId = p.getProdId();
+		int prodId = p.getProdId();
 	    uri = "http://hm-inventory.herokuapp.com/getFromWarehouse";
 	    parms = "?prodId="+ prodId + "&amount=" + qty;
 	    restTemplate = new RestTemplate();
-	    restTemplate.getForObject((uri+parms), String.class);*/
+	    restTemplate.getForObject((uri+parms), String.class);
 	    
 	    // Call shipping micro service
 	    /*uri = "http://hm-shipping.herokuapp.com/shipOrder";
