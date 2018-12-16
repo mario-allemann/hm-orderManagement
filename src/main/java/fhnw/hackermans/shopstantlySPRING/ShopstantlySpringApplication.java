@@ -103,11 +103,13 @@ public class ShopstantlySpringApplication {
 		o.setCustomer(c);
 		o.setDate(new Date());
 		o.setState("open");
+		orderRepo.save(o);
 		
 		OrderPositions op = new OrderPositions();
 		op.setOrder(o);
 		Product p = prodRepo.findByProductName(product);
 		op.setProduct(p);
 		op.setQty(qty);
+		orderPosRepo.save(op);
 	}
 }
