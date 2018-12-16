@@ -99,7 +99,7 @@ public class ShopstantlySpringApplication {
 
 		// create order and position
 		Order o = new Order();
-		Customer c = custRepo.findByCustomerId(1);
+		Customer c = custRepo.findByCustomerId(11);
 		o.setCustomer(c);
 		o.setDate(new Date());
 		o.setState("open");
