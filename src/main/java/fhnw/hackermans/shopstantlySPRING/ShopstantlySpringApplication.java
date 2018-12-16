@@ -1,9 +1,13 @@
 package fhnw.hackermans.shopstantlySPRING;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.json.BasicJsonParser;
+import org.springframework.boot.json.JsonParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,11 +45,17 @@ public class ShopstantlySpringApplication {
 	@RequestMapping("/createOrder")
 	@ResponseBody
 	String createOrder(@RequestBody String jsonOrder) {
-		return jsonOrder;
-		/*try {
-			JSONObject obj = new JSONObject(jsonOrder);
+		JsonParser jsonParser = new BasicJsonParser();
+		Map<String, Object> jsonMap = null;
+		try {
+			jsonMap = jsonParser.parseMap(jsonOrder);
 		} catch (Exception e) {
-			System.out.println(e);
-		}*/
+			// do nothing
+		}
+		String retString = "";
+		for (Map.Entry<String, Object> entry : jsonMap.entrySet()) {
+			retString += "KEY: " + entry.getKey() + "-> VALUE: " + entry.getValue().toString() + "\r\n";
+		}
+		return retString;
 	}
 }
