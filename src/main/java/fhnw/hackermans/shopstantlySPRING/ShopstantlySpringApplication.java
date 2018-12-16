@@ -122,7 +122,7 @@ public class ShopstantlySpringApplication {
 		
 		// call payment micro service
 		int orderId = o.getOrderId();
-		String uri = "http://hm-payment.herokuapp.com/pay";
+		String uri = "http://hm-payment.herokuapp.com/payOrder";
 	    String parms = "?orderId="+ orderId + "&amount=" + qty;
 	    RestTemplate restTemplate = new RestTemplate();
 	    restTemplate.getForObject((uri+parms), String.class);
@@ -135,7 +135,7 @@ public class ShopstantlySpringApplication {
 	    restTemplate.getForObject((uri+parms), String.class);
 	    
 	    // Call shipping micro service
-	    /*uri = "http://hm-shipping.herokuapp.com/ship";
+	    /*uri = "http://hm-shipping.herokuapp.com/shipOrder";
 	    parms = "?orderId="+ orderId;
 	    restTemplate = new RestTemplate();
 	    restTemplate.getForObject((uri+parms), String.class);*/
