@@ -8,5 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface OrderRepo extends CrudRepository<Order, Integer> {
 	@Query("SELECT orderId, state, date FROM order")
-	Iterable<Order> findAll();
+	Iterable<Order> findAll(Iterable<Integer> orderId);
 }
