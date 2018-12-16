@@ -49,7 +49,7 @@ public class ShopstantlySpringApplication {
 	@RequestMapping("/")
 	@ResponseBody
 	String home() {
-		return "This is the homepage, faggots";
+		return "This is the homepage";
 	}
 	
 	// Map customer table
