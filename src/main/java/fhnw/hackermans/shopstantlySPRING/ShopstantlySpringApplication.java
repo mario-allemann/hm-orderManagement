@@ -21,7 +21,7 @@ import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.ProductRepo;
 @Controller
 @EnableAutoConfiguration
 public class ShopstantlySpringApplication {
-	@Autowired 
+	@Autowired
 	private ProductRepo prodRepo;
 
 	public static void main(String[] args) {
@@ -41,7 +41,7 @@ public class ShopstantlySpringApplication {
 	Iterable<Product> getAllProducts() {
 		return prodRepo.findAll();
 	}
-	
+
 	// Map test page
 	@RequestMapping("/createOrder")
 	@ResponseBody
@@ -53,11 +53,18 @@ public class ShopstantlySpringApplication {
 		} catch (Exception e) {
 			// do nothing
 		}
-		Map<String, Object> queryResults = (Map<String, Object>)jsonMap.get("queryResult");
+		Map<String, Object> queryResults = (Map<String, Object>) jsonMap.get("queryResult");
 		ArrayList<String> outputContexts = (ArrayList<String>) queryResults.get("outputContexts");
+		String entryJson = outputContexts.get(0);
+		Map<String, Object> entryMap = null;
+		try {
+			entryMap = jsonParser.parseMap(entryJson);
+		} catch (Exception e) {
+			// do nothing
+		}
 		String retString = "";
-		for (String val : outputContexts) {
-			retString += "ENTRY: " + val + "\r\n";
+		for (Map.Entry<String, Object> entry : entryMap.entrySet()) {
+			retString += "KEY: " + entry.getKey() + "-> VALUE: " + entry.getValue().toString() + "\r\n";
 		}
 		return retString;
 	}
