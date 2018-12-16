@@ -1,5 +1,6 @@
 package fhnw.hackermans.shopstantlySPRING;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,10 +54,10 @@ public class ShopstantlySpringApplication {
 			// do nothing
 		}
 		Map<String, Object> queryResults = (Map<String, Object>)jsonMap.get("queryResult");
-		Map<String, Object> outputContexts = (Map<String, Object>)queryResults.get("outputContexts");
+		ArrayList<String> outputContexts = (ArrayList<String>) queryResults.get("outputContexts");
 		String retString = "";
-		for (Map.Entry<String, Object> entry : outputContexts.entrySet()) {
-			retString += "KEY: " + entry.getKey() + "-> VALUE: " + entry.getValue().toString() + "\r\n";
+		for (String val : outputContexts) {
+			retString += "ENTRY: " + val + "\r\n";
 		}
 		return retString;
 	}
