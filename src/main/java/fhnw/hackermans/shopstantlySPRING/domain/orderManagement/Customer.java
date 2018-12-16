@@ -18,8 +18,7 @@ public class Customer implements Serializable {
 	
 	@Column(name="customerId", nullable=false)	
 	@Id	
-	@GeneratedValue(generator="CUSTOMER_CUSTOMERID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="CUSTOMER_CUSTOMERID_GENERATOR", strategy="native")	
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int customerId;
 	
 	@Column(name="lastname", nullable=false, length=255)	

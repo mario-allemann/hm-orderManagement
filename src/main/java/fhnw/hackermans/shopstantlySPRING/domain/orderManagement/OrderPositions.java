@@ -14,12 +14,9 @@ public class OrderPositions implements Serializable {
 	public OrderPositions() {
 	}
 	
-	
-	
 	@Column(name="posId", nullable=false)	
 	@Id	
-	@GeneratedValue(generator="ORDERPOSITIONS_POSID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="ORDERPOSITIONS_POSID_GENERATOR", strategy="native")	
+	@GeneratedValue(strategy = GenerationType.AUTO)	
 	private int posId;
 	
 	@ManyToOne(targetEntity=Order.class, fetch=FetchType.LAZY)	

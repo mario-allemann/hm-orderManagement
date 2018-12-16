@@ -19,8 +19,7 @@ public class Product implements Serializable {
 	
 	@Column(name="prodId", nullable=false)	
 	@Id	
-	@GeneratedValue(generator="PRODUCT_PRODID_GENERATOR")	
-	@org.hibernate.annotations.GenericGenerator(name="PRODUCT_PRODID_GENERATOR", strategy="native")	
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int prodId;
 	
 	@Column(name="price", nullable=false)	

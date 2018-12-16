@@ -15,8 +15,6 @@ public class Order implements Serializable {
 	public Order() {
 	}
 	
-
-	
 	@Column(name="orderId", nullable=false)	
 	@Id	
 	@GeneratedValue(strategy = GenerationType.AUTO)	
