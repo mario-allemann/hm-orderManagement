@@ -106,7 +106,7 @@ public class ShopstantlySpringApplication {
 		String product = parameters.get("product");
 
 		// create order and position
-		Order o = new Order();
+		/*Order o = new Order();
 		Customer c = custRepo.findByCustomerId(11);
 		o.setCustomer(c);
 		o.setDate(new Date());
@@ -118,7 +118,7 @@ public class ShopstantlySpringApplication {
 		Product p = prodRepo.findByProductName(product).get(0);
 		op.setProduct(p);
 		op.setQty(qty);
-		orderPosRepo.save(op);
+		orderPosRepo.save(op);*/
 		
 		// call payment micro service
 		//System.out.println(oCreated.getOrderId());
