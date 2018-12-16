@@ -112,7 +112,6 @@ public class ShopstantlySpringApplication {
 		o.setDate(new Date());
 		o.setState("open");
 		orderRepo.save(o);
-		orderRepo.flush();
 		
 		OrderPositions op = new OrderPositions();
 		op.setOrder(o);
@@ -120,7 +119,6 @@ public class ShopstantlySpringApplication {
 		op.setProduct(p);
 		op.setQty(qty);
 		orderPosRepo.save(op);
-		orderPosRepo.flush();
 		
 		// call payment micro service
 		//System.out.println(oCreated.getOrderId());
