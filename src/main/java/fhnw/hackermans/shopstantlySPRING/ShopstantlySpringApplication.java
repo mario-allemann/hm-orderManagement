@@ -1,6 +1,7 @@
 package fhnw.hackermans.shopstantlySPRING;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.Customer;
+import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.CustomerRepo;
+import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.Order;
+import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.OrderPositions;
+import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.OrderPositionsRepo;
+import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.OrderRepo;
 import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.Product;
 import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.ProductRepo;
 
@@ -23,6 +30,15 @@ import fhnw.hackermans.shopstantlySPRING.domain.orderManagement.ProductRepo;
 public class ShopstantlySpringApplication {
 	@Autowired
 	private ProductRepo prodRepo;
+	
+	@Autowired
+	private OrderRepo orderRepo;
+	
+	@Autowired
+	private OrderPositionsRepo orderPosRepo;
+	
+	@Autowired
+	private CustomerRepo custRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ShopstantlySpringApplication.class, args);
@@ -35,17 +51,31 @@ public class ShopstantlySpringApplication {
 		return "This is the homepage, faggots";
 	}
 
-	// Map test page
+	// Map product table
 	@RequestMapping("/product")
 	@ResponseBody
 	Iterable<Product> getAllProducts() {
 		return prodRepo.findAll();
 	}
 
-	// Map test page
+	// Map order table
+	@RequestMapping("/order")
+	@ResponseBody
+	Iterable<Order> getAllOrders() {
+		return orderRepo.findAll();
+	}
+
+	// Map order positions
+	@RequestMapping("/orderPositions")
+	@ResponseBody
+	Iterable<OrderPositions> getOrderPositions() {
+		return orderPosRepo.findAll();
+	}
+
+	// Map order creation
 	@RequestMapping("/createOrder")
 	@ResponseBody
-	String createOrder(@RequestBody String jsonOrder) {
+	void createOrder(@RequestBody String jsonOrder) {
 		JsonParser jsonParser = new BasicJsonParser();
 		Map<String, Object> jsonMap = null;
 		try {
@@ -63,10 +93,21 @@ public class ShopstantlySpringApplication {
 			// do nothing
 		}
 		Map<String, String> parameters = (Map<String, String>) entryMap.get("parameters");
-		String retString = "";
-		for (Map.Entry<String, String> entry : parameters.entrySet()) {
-			retString += "KEY: " + entry.getKey() + "-> VALUE: " + entry.getValue() + "\r\n";
-		}
-		return retString;
+
+		int qty = Integer.parseInt(parameters.get("qty"));
+		String product = parameters.get("product");
+
+		// create order and position
+		Order o = new Order();
+		Customer c = custRepo.findByCustomerId(1);
+		o.setCustomer(c);
+		o.setDate(new Date());
+		o.setState("open");
+		
+		OrderPositions op = new OrderPositions();
+		op.setOrder(o);
+		Product p = prodRepo.findByProductName(product);
+		op.setProduct(p);
+		op.setQty(qty);
 	}
 }

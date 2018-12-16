@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 // CRUD refers Create, Read, Update, Delete
 
 public interface CustomerRepo extends CrudRepository<Customer, Integer> {
-
+	Customer findByCustomerId(int customerId);
 }
