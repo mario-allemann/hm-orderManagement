@@ -52,7 +52,7 @@ public class ShopstantlySpringApplication {
 		} catch (Exception e) {
 			// do nothing
 		}
-		Map<String, Object> outputContexts = (Map<String, Object>)jsonMap.get("outputContexts");
+		Map<String, Object> outputContexts = (Map<String, Object>)jsonMap.get("queryResults");
 		String retString = "";
 		for (Map.Entry<String, Object> entry : outputContexts.entrySet()) {
 			retString += "KEY: " + entry.getKey() + "-> VALUE: " + entry.getValue().toString() + "\r\n";
